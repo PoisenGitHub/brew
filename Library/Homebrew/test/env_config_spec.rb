@@ -5,6 +5,12 @@ require "diagnostic"
 RSpec.describe Homebrew::EnvConfig do
   subject(:env_config) { described_class }
 
+  describe "ENVS" do
+    it "is sorted alphabetically" do
+      expect(env_config::ENVS.keys.sort).to eql(env_config::ENVS.keys)
+    end
+  end
+
   describe ".env_method_name" do
     it "generates method names" do
       expect(env_config.env_method_name("HOMEBREW_FOO", {})).to eql("foo")
